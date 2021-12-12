@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MessagingService } from './services/messaging.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'notifications2';
+  message:any;
+
+  constructor(private afMessaging: MessagingService ){
+    this.afMessaging.receiveMessage()
+    this.message = this.afMessaging.currentMessage
+    console.log(this.message);
+  }
+
+
+  requestPermission() {
+    this.afMessaging.requestPermission()
+  }
 }
